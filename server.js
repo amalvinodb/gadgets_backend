@@ -2,14 +2,16 @@ const express = require("express");
 require("colors");
 const config = require("./config/index");
 const gadgetRoutes = require("./routes/gadgets.route");
+const userRoutes = require("./routes/user.route");
 const { connectDB } = require("./connections/dbConnections");
 
 const port = config.PORT;
 const app = express();
-connectDB()
+connectDB();
 app.use(express.json());
 
-app.use("/api", gadgetRoutes);
+app.use("/gadget", gadgetRoutes);
+app.use("/user", userRoutes);
 
 app.listen(port, (error) => {
   if (!error) {

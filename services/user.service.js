@@ -9,5 +9,12 @@ module.exports = {
       throw Error(error);
     }
   },
-  getUser() {},
+  async getUser(email) {
+    try {
+      const user = await User.findOne({ where: { email: email } });
+      return user.toJSON();
+    } catch (error) {
+      throw Error(error);
+    }
+  },
 };

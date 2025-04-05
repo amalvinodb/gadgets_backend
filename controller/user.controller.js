@@ -18,8 +18,11 @@ module.exports = {
       res.status(403).json({ message: "Encounted an issue creating User" });
     }
   },
-  doLogin(req, res) {
+  async doLogin(req, res) {
     try {
+      const data = req.body;
+      const user = await userService.getUser(data.email);
+      console.log(user);
     } catch (error) {
       res.status(403).json({ message: "Encounted an issue verifying User" });
     }

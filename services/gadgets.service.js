@@ -1,4 +1,4 @@
-const { Gadget } = require("../models/gadget");
+const { Gadget } = require("../models");
 
 module.exports = {
   createGadget() {

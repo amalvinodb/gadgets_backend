@@ -11,7 +11,10 @@ module.exports = {
     return "feting all entry";
   },
   fetchOneGadget() {
-    return "returning one entry";
+    try {
+    } catch (error) {
+      console.error("db error", error);
+    }
   },
   deleteOneGadget() {
     return "deleted one Gadget";

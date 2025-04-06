@@ -10,6 +10,7 @@ const {
   errorHandler,
 } = require("./middleware/errorHandlingMIddleware");
 const { connectDB } = require("./connections/dbConnections");
+const morgan = require("morgan");
 
 const port = config.PORT;
 
@@ -17,6 +18,7 @@ const app = express();
 connectDB();
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(morgan("combined"));
 
 app.use("/gadget", gadgetRoutes);
 app.use("/user", userRoutes);

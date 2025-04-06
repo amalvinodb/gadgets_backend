@@ -21,24 +21,27 @@ module.exports = {
           .json({ message: "Missing filed please add all required fields" });
       }
     } catch (error) {
-      console.error(error);
-      res.status(403).json({ message: "Encounted an issue creating User" });
+      throw Error(error);
     }
   },
   async doLogin(req, res) {
     try {
+      console.log(req.body, "this is a body");
       const data = req.body;
       const user = await userService.getUser(data.email);
+      if (!user) res.status(403).json({ message: "user not found" });
       const userAuth = await bcryptHelper.validateData(
         data.password,
         user.user.password
       );
       if (userAuth) {
         const data = {
+          id: user.user.id,
           name: user.user.name,
           email: user.user.email,
           age: user.user.age,
         };
+        console.log(data);
         const jwtToken = jwtHelper.generateToken(data);
         res
           .status(200)
@@ -47,8 +50,7 @@ module.exports = {
         res.status(403).json({ message: "Wrong User Details" });
       }
     } catch (error) {
-      console.error(error);
-      res.status(403).json({ message: "Encounted an issue verifying User" });
+      throw Error(error);
     }
   },
 };

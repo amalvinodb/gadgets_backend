@@ -22,5 +22,5 @@ router.post(
   authMiddleware.verifyUser,
   gadgetsContoller.deleteMultipe
 );
-
+router.put("/bulk", authMiddleware.verifyUser, gadgetsContoller.bulkUpdate);
 module.exports = router;

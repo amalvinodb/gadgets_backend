@@ -13,12 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Gadget.init(
     {
-      image_url: DataTypes.STRING,
       item_name: DataTypes.STRING,
       item_secret: DataTypes.STRING,
       item_price: DataTypes.FLOAT,
       item_quantity: DataTypes.INTEGER,
-      item_description: DataTypes.TEXT,
       user_id: {
         type: DataTypes.INTEGER,
         references: {

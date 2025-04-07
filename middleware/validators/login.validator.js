@@ -21,12 +21,6 @@ const validateSignupData = [
     .withMessage("password is required")
     .isLength({ min: 6 })
     .withMessage("password need to be more than 6 characters"),
-  body("age")
-    .notEmpty()
-    .withMessage("age field is required")
-    .isInt({ min: 18 })
-    .withMessage("Age must be greater than or equal to 18"),
-  body("iamge").optional().isString().withMessage("please upload a image url"),
 ];
 
 module.exports = { validateLoginData, validateSignupData };

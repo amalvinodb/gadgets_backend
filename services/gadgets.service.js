@@ -20,7 +20,7 @@ module.exports = {
   async fetchAllGadgets(limit, skip) {
     try {
       const allGadget = await Gadget.findAndCountAll({
-        attributes: ["id", "item_name", "item_price"], // Select specific fields
+        attributes: ["id", "item_name", "item_price", "item_quantity"], // Select specific fields
         limit: limit, // Number of entries to return
         offset: skip, // Skip this many entries
       });

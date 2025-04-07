@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      image_url: {
-        type: Sequelize.STRING,
-      },
       item_name: {
         type: Sequelize.STRING,
       },
@@ -23,9 +20,6 @@ module.exports = {
       },
       item_quantity: {
         type: Sequelize.INTEGER,
-      },
-      item_description: {
-        type: Sequelize.TEXT,
       },
       user_id: {
         type: Sequelize.INTEGER,

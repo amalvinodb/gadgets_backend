@@ -19,8 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true, // Add this line to make the email field unique
       },
       password: DataTypes.STRING,
-      age: DataTypes.INTEGER,
-      image: DataTypes.STRING,
+
     },
     {
       sequelize,

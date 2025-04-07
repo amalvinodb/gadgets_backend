@@ -73,4 +73,26 @@ module.exports = {
     console.log(result);
     res.status(200).json({ message: "successfully deleted all gadgets" });
   },
+  async bulkUpdate(req, res) {
+    const data = req.body;
+    console.log(data);
+    const promises = data.map(async (item) => {
+      const id = item.id;
+      delete item.id;
+      if ("item_secret" in item) {
+        console.log("secret is there");
+        item.item_secret = encryptSecret(item, item.key);
+        delete item.key;
+        console.log(item);
+        const updatedGadget = await gadgetsService.updateGadget(id, item);
+        return updatedGadget;
+      } else {
+        const updatedGadget = await gadgetsService.updateGadget(id, item);
+        return updatedGadget;
+      }
+    });
+    const result = await Promise.all(promises);
+    console.log(result);
+    res.status(200).json({ message: "updated all data", data: result });
+  },
 };

@@ -6,7 +6,7 @@ module.exports = {
   async userSignUp(req, res) {
     try {
       const data = req.body;
-      if (data.password && data.name && data.email && data.age) {
+      if (data.password && data.name && data.email) {
         const existUser = await userService.getUser(data.email);
         console.log(existUser.status);
         if (existUser.status)

@@ -10,14 +10,14 @@ module.exports = {
         const existUser = await userService.getUser(data.email);
         console.log(existUser.status);
         if (existUser.status)
-          res.status(403).json({ message: "User email already exist" });
+          res.status(409).json({ message: "User email already exist" });
         data.password = await bcryptHelper.hashData(data.password, 10);
 
         const newUser = await userService.createUser(data);
         res.status(200).json({ message: "created new user entry" });
       } else {
         res
-          .status(403)
+          .status(400)
           .json({ message: "Missing filed please add all required fields" });
       }
     } catch (error) {
@@ -29,7 +29,7 @@ module.exports = {
       console.log(req.body, "this is a body");
       const data = req.body;
       const user = await userService.getUser(data.email);
-      if (!user) res.status(403).json({ message: "user not found" });
+      if (!user) res.status(404).json({ message: "user not found" });
       const userAuth = await bcryptHelper.validateData(
         data.password,
         user.user.password
@@ -47,7 +47,7 @@ module.exports = {
           .status(200)
           .json({ message: "user Logged in succesfully", token: jwtToken });
       } else {
-        res.status(403).json({ message: "Wrong User Details" });
+        res.status(401).json({ message: "Wrong User Details" });
       }
     } catch (error) {
       throw Error(error);
